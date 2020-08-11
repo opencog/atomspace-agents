@@ -62,15 +62,15 @@ Consider the simplest agent - the "remembering agent" that sometimes
 moves atoms from RAM to disk, and then frees up RAM.  How should that
 work? Well, it's surprisingly ... tricky.  One could stick a timestamp
 on each Atom (a timestamp Value) and store the oldest ones. But this
-eats urp RAM, to store the timestamp, and then eats more RAM to keep
+eats up RAM, to store the timestamp, and then eats more RAM to keep
 a sorted list of the oldest ones. If we don't keep a sorted list,
 then we have to search the atomspace for old ones, and that eats CPU.
 Yuck and yuck. 
 
 Every time a client asks for an Atom, we have to update the timestamp
-(like the access timestamp on a unix file.)  So, unix files have three
+(like the access timestamp on a Unix file.)  So, Unix files have three
 timestamps to aid in decision-making - "created", "modified" and "accessed".
-This works because most unix files are huge compared to the size of the
+This works because most Unix files are huge compared to the size of the
 timestamps. For the AtomSpace, the Atoms are the same size as the
 timestamps, so we have to be careful not to mandate that every Atom
 must have some meta-data.
@@ -83,13 +83,13 @@ of RAM, if we're always going to disk???) Can one be more clever? How?
 
 There's a third problem: "vital" data vs "re-creatable" data. For example,
 a genomics dataset itself is "vital" in that if you erase anything, it's a
-permanent "dataloss".  The [MOZI genomics codebase](https://github/mozi-ai),
+permanent "dataloss".  The [MOZI genomics code-base](https://github/mozi-ai),
 as it is being used, performs searches, and places the search results into
 the AtomSpace, as a cache, to avoid re-searching next time. These search
 results are "re-creatable".   Should re-creatable data be saved to disk?
 Sometimes? Always? Never? If one has a dozen Values attached to some Atom,
 how can you tell which of these Values are "vital", and which are
-"recreatable"?
+"re-creatable"?
 
 The above sketches three different problems that even the very simplest
 agent must solve to make even the simplest distributed system.   The
