@@ -4,10 +4,8 @@ AtomSpace Agents
 AtomSpace Agents implement different policies for moving Atoms between
 disk and RAM, and between different servers on the network. They are
 the vital decision-makers that are used to stitch together modular
-building blocks to build distributed and/or decentralized AtomSpaces.
-
-The Agents are distinct from the disk, RAM and network modules, which
-are "building blocks" that the agents can "glue together".
+disk/RAM/network building blocks to build distributed and/or
+decentralized AtomSpaces.
 
 Existing building blocks:
 * The [AtomSpace](https://github.com/opencog/atomspace), the in-RAM
@@ -34,7 +32,7 @@ What are Agents?
 ----------------
 ... and why are they needed? Explained by example.
 
-Let me start small. So, right now, you can take the cogserver, start it
+Let's start small. So, right now, you can take the cogserver, start it
 on a large-RAM machine, and have half-a-dozen other AtomSpaces connect
 to it. They can request Atoms, do some work, push those Atoms back to
 the cogserver. This gives you a distributed AtomSpace, as long as
@@ -49,11 +47,11 @@ implements some policy for doing this.  There is no need to modify
 the cogserver itself, or any of the clients, to create this agent:
 so it's a nice, modular design. That's why the existing pieces are
 "building blocks": with this third piece, this "remembering agent",
-one gets a truly functional small distributed system.
+one gets a truly functional small distributed AtomSpace.
 
 If things don't fit on one disk, or if there are hundreds of clients
 instead of dozens, then one needs a "sharing agent" to implement some
-policy for sharing portions of an atomspace across multiple cogservers.
+policy for sharing portions of an AtomSpace across multiple cogservers.
 Again, this is an orthogonal block of code, and one can imagine having
 different kinds of agents for implementing different kinds of policies
 for doing this.
@@ -71,27 +69,27 @@ Yuck and yuck.
 
 Every time a client asks for an Atom, we have to update the timestamp
 (like the access timestamp on a unix file.)  So, unix files have three
-timestamps to aid in decision-making - created, modified and accessed.
-It works because most files are huge compared to the size of the
+timestamps to aid in decision-making - "created", "modified" and "accessed".
+This works because most unix files are huge compared to the size of the
 timestamps. For the AtomSpace, the Atoms are the same size as the
 timestamps, so we have to be careful not to mandate that every Atom
 must have some meta-data.
 
 There's another problem. Suppose some client asks for the incoming set
 of some Atom. Well, is that in RAM already, or is it on disk, and needs
-to be fetched? The worst-case scenario is to assume it's not, and always
-re-fetch from disk. But this hurts performance. (what's the point of RAM,
-if we're always going to disk???) Can one be more clever? How?
+to be fetched? The worst-case scenario is to assume it's not in RAM, and
+always re-fetch from disk. But this hurts performance. (what's the point
+of RAM, if we're always going to disk???) Can one be more clever? How?
 
 There's a third problem: "vital" data vs "re-creatable" data. For example,
 a genomics dataset itself is "vital" in that if you erase anything, it's a
-permanent "dataloss".  As it is being used, the
-[MOZI genomics codebase](https://github/mozi-ai) performs searches, and
-places the search results into the atomspace, as a cache, to avoid
-re-searching next time. These search results are "re-creatable".   Should
-re-creatable data be saved to disk? Sometimes? Always? Never? If one has
-a dozen Values attached to some Atom, how can you tell which of these
-Values are "vital", and which are "recreatable"?
+permanent "dataloss".  The [MOZI genomics codebase](https://github/mozi-ai),
+as it is being used, performs searches, and places the search results into
+the AtomSpace, as a cache, to avoid re-searching next time. These search
+results are "re-creatable".   Should re-creatable data be saved to disk?
+Sometimes? Always? Never? If one has a dozen Values attached to some Atom,
+how can you tell which of these Values are "vital", and which are
+"recreatable"?
 
 The above sketches three different problems that even the very simplest
 agent must solve to make even the simplest distributed system.   The
