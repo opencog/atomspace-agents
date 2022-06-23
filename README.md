@@ -31,7 +31,7 @@ without crashing or data corruption.)
                                             |   AtomSpace    |
     +-------------+                         +----------------+
     |             |                         |                |
-    |  Cogserver  | <<==== Internet ====>>  | CogStorageNode |
+    |  CogServer  | <<==== Internet ====>>  | CogStorageNode |
     |             |                         |                |
     +-------------+                         +----------------+
     |  AtomSpace  |
@@ -66,7 +66,7 @@ There are two ways to implement this idea:
   the policy agent knows what to do, and it knows how to resolve conflicts
   that individual apps might not even be aware of.
 
-This repo implements such policy ageints. The above is the simplest
+This repo implements such policy agents. The above is the simplest
 non-trivial agent: the write-through agent (called a "remembering agent"
 in the text below.)
 
