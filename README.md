@@ -133,6 +133,9 @@ The simplest non-trivial agent is the write-through agent. For every
 write request that it receives on the network, it writes exactly the
 same data to disk.
 
+This should be easy to implement, and is critically needed, for the
+LinkGrammar example, above.
+
 The Read-through Agent
 -----------------------
 Much like the write-through agent, it passes on reads. This is harder,
