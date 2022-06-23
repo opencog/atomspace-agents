@@ -44,7 +44,30 @@ without crashing or data corruption.)
     | disk drive  |
     +-------------+
 ```
+The above works great, as long as the dataset that's on disk is fully
+loaded into the server AtomSpace, before any clients try to use it.
+What doesn't work (without an agent) is the case where an update in the
+client AtomSpace needs to be pushed to the server, and then pushed to
+the disk drive.  Pushing to the CogServer is easy (its a simple existing
+function). But how to get it to the disk drive?
 
+There are two ways to implement this idea:
+* Top-down command. The client app (link-grammar) tells the CogServer
+  what to do, and the CogServer obeys orders, and just does it. There
+  are two problems with this design:
+  - How to send orders telling the CogServer what to do? There is no
+    infrastructure for this.
+  - What happens if two different apps are sending conflicting orders?
+    How can one avoid them trampling on one-another?
+
+* Policy agents. The client app (link-grammar) attaches to a server that
+  implements the desired policy (which, in this case, is a write-through
+  from network to disk storage).  This solves both problems above, as
+  the policy agent knows what to do, and it knows how to resolve conflicts
+  that individual apps might not even be aware of.
+
+This repo implements such policy ageints. The above is the simplest
+non-trivial agent: the write-through agent.
 
 ### Existing building blocks
 * The [AtomSpace](https://github.com/opencog/atomspace), the in-RAM
