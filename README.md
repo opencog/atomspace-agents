@@ -69,26 +69,33 @@ There are two ways to implement this idea:
 This repo implements such policy ageints. The above is the simplest
 non-trivial agent: the write-through agent.
 
-### Existing building blocks
-* The [AtomSpace](https://github.com/opencog/atomspace), the in-RAM
-  database.
-* The [CogServer](https://github.com/opencog/cogserver), a network
-  server for AtomSpaces.
-* The [Cog backend client](https://github.com/opencog/atomspace-cog),
-  an AtomSpace plugin that can share Atoms across the network with
+### Terminology and building blocks
+* The [AtomSpace](https://github.com/opencog/atomspace) is an in-RAM
+  (hyper-)graph database.
+* The [CogServer](https://github.com/opencog/cogserver) is a network
+  server for AtomSpaces. It provides a networked command line for
+  scheme, python and json, as well as a fast network connection for
+  talking to `CogStorageNode`s.
+* The [CogStorageNode](https://github.com/opencog/atomspace-cog) is
+  an AtomSpace Node that can share Atoms across the network with
   the CogServer.
-* The [Rocks backend](https://github.com/opencog/atomspace-rocks),
-  an AtomSpace plugin that can save/restore Atoms to RocksDB.
+* The [RocksStorageNode](https://github.com/opencog/atomspace-rocks),
+  an AtomSpace Node that can save/restore Atoms to RocksDB.
   ([RocksDB](https://rocksdb.org/) is an  embeddable persistent
   store for fast storage to disks/SSD drives).
-* The [SQL backend](https://github.com/opencog/atomspace/tree/master/opencog/persist/sql),
+* The [PostgresStorageNode](https://github.com/opencog/atomspace/tree/master/opencog/persist/sql),
   an AtomSpace plugin that can save/restore Atoms to PostgreSQL.
+  Its old, slow and needs a major overhaul/redesign. But it still works.
 
 A few more building blocks, not yet ready for general use:
 * The [Websosckets server](https://github.com/opencog/atomspace-websockets),
   an alternative network server (alpha, not yet usable).
 * The [RPC server](https://github.com/habush/atomspace-rpc),
   an alternative network server (alpha, not yet usable).
+
+Both of the above suffer from not using the "standard"
+[StorageNode API](https://wiki.opencog.org/w/StorageNode), which means
+that custom code needs to be developed before these become usable.
 
 What are Agents?
 ----------------
