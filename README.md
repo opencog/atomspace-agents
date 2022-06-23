@@ -67,7 +67,8 @@ There are two ways to implement this idea:
   that individual apps might not even be aware of.
 
 This repo implements such policy ageints. The above is the simplest
-non-trivial agent: the write-through agent.
+non-trivial agent: the write-through agent (called a "remembering agent"
+in the text below.)
 
 ### Terminology and building blocks
 * The [AtomSpace](https://github.com/opencog/atomspace) is an in-RAM
@@ -99,7 +100,8 @@ that custom code needs to be developed before these become usable.
 
 What are Agents?
 ----------------
-... and why are they needed? Explained by example.
+... and why are they needed? Explained by example. (The repeats the
+example given above).
 
 Let's start small. So, right now, you can take the cogserver, start it
 on a large-RAM machine, and have half-a-dozen other AtomSpaces connect
@@ -125,11 +127,31 @@ Again, this is an orthogonal block of code, and one can imagine having
 different kinds of agents for implementing different kinds of policies
 for doing this.
 
-An Example Agent
-----------------
-Consider the simplest agent - the "remembering agent" that sometimes
-moves atoms from RAM to disk, and then frees up RAM.  How should that
-work? Well, it's surprisingly ... tricky.  One could stick a timestamp
+The Write-through Agent
+-----------------------
+The simplest non-trivial agent is the write-through agent. For every
+write request that it receives on the network, it writes exactly the
+same data to disk.
+
+The Read-through Agent
+-----------------------
+Much like the write-through agent, it passes on reads. This is harder,
+though. The naive implementation would be inefficient: if a read request
+is made, and the data is already in the AtomSpace, then why go all the
+way down to the disk?  If a read request is made, and we already know
+that its not on the disk, then why look for it again? To have this work
+"elegantly", some kind of caching and time-stamping and expiration
+infrastructure is needed.
+
+The Remembering Agent
+---------------------
+The Remembering Agent combines the two above, and adds some
+sophistication to the write cycle: instead of writing every time a
+request comes through, it allows changes to accumulate in the AtomSpace,
+and only later does a bulk write of all of the accumulated changes.
+This is surprisingly difficult.
+
+Here are some thoughts about such a design. One could stick a timestamp
 on each Atom (a timestamp Value) and store the oldest ones. But this
 eats up RAM, to store the timestamp, and then eats more RAM to keep
 a sorted list of the oldest ones. If we don't keep a sorted list,
@@ -160,9 +182,9 @@ Sometimes? Always? Never? If one has a dozen Values attached to some Atom,
 how can you tell which of these Values are "vital", and which are
 "re-creatable"?
 
-The above sketches three different problems that even the very simplest
-agent must solve to make even the simplest distributed system.   The
-obvious solution is not very good, the good solution is not obvious.
+The above sketches three different problems that plague any designs
+beyond the very simplest ones.  The obvious solutions are not very good,
+the good solutions are not obvious.
 
 This Repo
 ---------
