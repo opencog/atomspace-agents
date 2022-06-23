@@ -7,7 +7,46 @@ the vital decision-makers that are used to stitch together modular
 disk/RAM/network building blocks to build distributed and/or
 decentralized AtomSpaces.
 
-Existing building blocks:
+### Example
+Consider the following usage scenario. It is taken from the
+[LinkGrammar AtomSpace dictionary backend](https://github.com/opencog/link-grammar/tree/master/link-grammar/dict-atomese).
+Stacked boxes represent shared-libraries, with shared-library calls going
+downwards. It illustrates a LinkGrammar parser, using a dictionary located
+in the AtomSpace. But, as AtomSpaces start out empty, the data has to come
+"from somewhere". In this case, the data comes from another AtomSpace, running
+remotely (in the demo, its in a Docker container).  That AtomSpace in turn
+loads its data from a
+[RocksStorageNode](https://github.com/opencog/opencog-rocks), which uses
+[RocksDB](https://rocksdb.org) to work with the local disk drive.
+The network connection is provided by a
+[CogServer](https://github.com/opencog/cogserver) to
+[CogStorageNode](https://github.com/opencog/opencog-cog) pairing.
+Note: all this code already works, and is stable (stays up for weeks/months
+without crashing or data corruption.)
+```
+                                            +----------------+
+                                            |  Link Grammar  |
+                                            |    parser      |
+                                            +----------------+
+                                            |   AtomSpace    |
+    +-------------+                         +----------------+
+    |             |                         |                |
+    |  Cogserver  | <<==== Internet ====>>  | CogStorageNode |
+    |             |                         |                |
+    +-------------+                         +----------------+
+    |  AtomSpace  |
+    +-------------+
+    |    Rocks    |
+    | StorageNode |
+    +-------------+
+    |   RocksDB   |
+    +-------------+
+    | disk drive  |
+    +-------------+
+```
+
+
+### Existing building blocks
 * The [AtomSpace](https://github.com/opencog/atomspace), the in-RAM
   database.
 * The [CogServer](https://github.com/opencog/cogserver), a network
@@ -65,7 +104,7 @@ on each Atom (a timestamp Value) and store the oldest ones. But this
 eats up RAM, to store the timestamp, and then eats more RAM to keep
 a sorted list of the oldest ones. If we don't keep a sorted list,
 then we have to search the atomspace for old ones, and that eats CPU.
-Yuck and yuck. 
+Yuck and yuck.
 
 Every time a client asks for an Atom, we have to update the timestamp
 (like the access timestamp on a Unix file.)  So, Unix files have three
