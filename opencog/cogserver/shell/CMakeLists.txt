@@ -1,15 +1,15 @@
 ###
-###ADD_LIBRARY (sexpr-shell SHARED
-###	SexprShell
-###	SexprShellModule
+###ADD_LIBRARY (wthru-shell SHARED
+###	WriteThruShell
+###	WriteThruShellModule
 ###)
 ###
-###TARGET_LINK_LIBRARIES(sexpr-shell
+###TARGET_LINK_LIBRARIES(wthru-shell
 ###	network
 ###	server
 ###	${ATOMSPACE_LIBRARY}
 ###	${COGUTIL_LIBRARY}
 ###)
 ###
-###INSTALL (TARGETS sexpr-shell
+###INSTALL (TARGETS wthru-shell
 ###	LIBRARY DESTINATION "lib${LIB_DIR_SUFFIX}/opencog/modules")
