@@ -24,6 +24,11 @@ How can the second thing be done?  There are two choices:
 
 The second alternative seems better.
 
+Ther's yet another possibility: Alter `CogStorageNode` as above, and
+pass the policy to the `sexpr` shell, via commands.  The downside to
+this is that code lives in the AtomSpace git repo, and so we have a
+chicken-n-egg problem in compiling it.
+
 ### Boilerplate code
 The code in these files:
 ```

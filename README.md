@@ -194,6 +194,26 @@ This Repo
 This repo is meant to be a dumping ground for experimental agents that
 implement different kinds of policies, as sketched above.
 
+Design
+------
+The current idea is that the easiest way to do this is to write new
+cogserver shells that behave much like the `sexpr` shell, except that
+they handle the `sexpr` commands slightly differently.  See the
+directory `opencog/cogserver/shell` for details. The directory
+structure is identical to the cogserver directory structure; because
+... ummm ... TBD.
+
+Building
+--------
+Install the preq's. These are the AtomSpace, and the cogserver.
+There's no working code yet. But when there is, you'll do this:
+```
+mkdir build; cd build
+cmake ..
+make -j
+sudo make install.
+```
+
 Status
 ------
-***Version 0.0.0*** There is nothing here yet.
+***Version 0.0.1*** A rough sketch of how things might work.
