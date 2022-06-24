@@ -29,6 +29,12 @@ pass the policy to the `sexpr` shell, via commands.  The downside to
 this is that code lives in the AtomSpace git repo, and so we have a
 chicken-n-egg problem in compiling it.
 
+There's too much boilerplate. Here's an even better idea:
+
+Change the `SexprEval` class to use a different Commands interpeter
+(see `SexprEval.h` line 53) ... but how to trick the cogserver into
+loading a different policy?
+
 ### Boilerplate code
 The code in these files:
 ```
