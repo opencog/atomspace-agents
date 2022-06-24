@@ -33,7 +33,8 @@ There's too much boilerplate. Here's an even better idea:
 
 Change the `SexprEval` class to use a different Commands interpeter
 (see `SexprEval.h` line 53) ... but how to trick the cogserver into
-loading a different policy?
+loading a different policy?  Maybe using the factory trick, like
+elsewhere?
 
 ### Boilerplate code
 The code in these files:
