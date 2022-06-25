@@ -1,15 +1,14 @@
-###
-###ADD_LIBRARY (wthru-shell SHARED
-###	WriteThruShell
-###	WriteThruShellModule
-###)
-###
-###TARGET_LINK_LIBRARIES(wthru-shell
-###	network
-###	server
-###	${ATOMSPACE_LIBRARY}
-###	${COGUTIL_LIBRARY}
-###)
-###
-###INSTALL (TARGETS wthru-shell
-###	LIBRARY DESTINATION "lib${LIB_DIR_SUFFIX}/opencog/modules")
+
+ADD_LIBRARY (wthru-proxy SHARED
+	WriteThruProxy
+)
+
+TARGET_LINK_LIBRARIES(wthru-proxy
+	network
+	server
+	${ATOMSPACE_LIBRARY}
+	${COGUTIL_LIBRARY}
+)
+
+INSTALL (TARGETS wthru-proxy
+	LIBRARY DESTINATION "lib${LIB_DIR_SUFFIX}/opencog/modules")

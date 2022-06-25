@@ -1,8 +1,8 @@
 /*
- * WriteThruShell.h
+ * WriteThruProxy.cc
  *
- * Simple s-expression shell
- * Copyright (c) 2008, 2013, 2020 Linas Vepstas <linas@linas.org>
+ * Simple WriteThru shell
+ * Copyright (c) 2008, 2020 Linas Vepstas <linas@linas.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License v3 as
@@ -20,25 +20,29 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef _OPENCOG_WRITE_THRU_SHELL_H
-#define _OPENCOG_WRITE_THRU_SHELL_H
+#include "WriteThruProxy.h"
 
-#include <opencog/network/GenericShell.h>
+using namespace opencog;
 
-namespace opencog {
-/** \addtogroup grp_server
- *  @{
- */
+DECLARE_MODULE(WriteThruProxy);
 
-class WriteThruShell : public GenericShell
+WriteThruProxy::WriteThruProxy(CogServer& cs) : Module(cs)
 {
-	public:
-		WriteThruShell(void);
-		virtual ~WriteThruShell();
-		virtual GenericEval* get_evaluator(void);
-};
-
-/** @}*/
+printf("duuuude proxy ctor\n");
 }
 
-#endif // _OPENCOG_WRITE_THRU_SHELL_H
+void WriteThruProxy::init(void)
+{
+}
+
+WriteThruProxy::~WriteThruProxy()
+{
+}
+
+bool void WriteThruProxy::config(const std::string& cfg)
+{
+printf("duuuude proxy cfg %s\n", cfg.c_str());
+	return false;
+}
+
+/* ===================== END OF FILE ============================ */

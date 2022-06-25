@@ -1,5 +1,5 @@
 /*
- * WriteThruShellModule.h
+ * WriteThruProxy.h
  *
  * Module for starting up s-expression shells
  * Copyright (c) 2008, 2020 Linas Vepstas <linas@linas.org>
@@ -20,41 +20,28 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef _OPENCOG_WRITE_THRU_SHELL_MODULE_H
-#define _OPENCOG_WRITE_THRU_SHELL_MODULE_H
+#ifndef _OPENCOG_WRITE_THRU_PROXY_H
+#define _OPENCOG_WRITE_THRU_PROXY_H
 
-#include <opencog/cogserver/server/Request.h>
-#include <opencog/cogserver/server/CogServer.h>
+#include <opencog/cogserver/server/Module.h>
 
 namespace opencog {
 /** \addtogroup grp_server
  *  @{
  */
 
-class WriteThruShellModule : public Module
+class WriteThruProxy : public Module
 {
-	private:
-		class shelloutRequest : public Request
-		{
-			public:
-				static const RequestClassInfo& info(void);
-				shelloutRequest(CogServer& cs) : Request(cs) {};
-				virtual ~shelloutRequest() {};
-				virtual bool execute(void);
-				virtual bool isShell(void) { return true; }
-		};
-
-		Factory<shelloutRequest, Request> shelloutFactory;
-
 	public:
-		WriteThruShellModule(CogServer&);
-		virtual ~WriteThruShellModule();
+		WriteThruProxy(CogServer&);
+		virtual ~WriteThruProxy();
 
 		static const char *id(void);
 		virtual void init(void);
+		virtual bool config(const std::string&);
 };
 
 /** @}*/
 }
 
-#endif // _OPENCOG_WRITE_THRU_SHELL_MODULE_H
+#endif // _OPENCOG_WRITE_THRU_PROXY_H
