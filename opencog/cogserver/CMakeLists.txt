@@ -1,2 +1,2 @@
 
-ADD_SUBDIRECTORY (shell)
+ADD_SUBDIRECTORY (modules)
