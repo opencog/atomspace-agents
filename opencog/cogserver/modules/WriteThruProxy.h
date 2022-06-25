@@ -39,6 +39,8 @@ class WriteThruProxy : public Proxy
 		static const char *id(void);
 		virtual void init(void);
 		virtual bool config(const char*);
+
+		virtual void stuff(void);
 };
 
 /** @}*/

@@ -34,6 +34,7 @@ printf("duuuude proxy ctor\n");
 
 void WriteThruProxy::init(void)
 {
+printf("duuuude proxy init\n");
 }
 
 WriteThruProxy::~WriteThruProxy()
@@ -44,6 +45,11 @@ bool WriteThruProxy::config(const char* cfg)
 {
 printf("duuuude proxy cfg %s\n", cfg);
 	return false;
+}
+
+void WriteThruProxy::stuff(void)
+{
+printf("duuuude proxy install stufffff!!\n");
 }
 
 /* ===================== END OF FILE ============================ */
