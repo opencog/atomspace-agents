@@ -27,7 +27,7 @@ using namespace opencog;
 
 DECLARE_MODULE(WriteThruProxy);
 
-WriteThruProxy::WriteThruProxy(CogServer& cs) : Module(cs)
+WriteThruProxy::WriteThruProxy(CogServer& cs) : Proxy(cs)
 {
 printf("duuuude proxy ctor\n");
 }
