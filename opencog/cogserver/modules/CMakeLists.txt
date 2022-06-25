@@ -4,8 +4,7 @@ ADD_LIBRARY (wthru-proxy SHARED
 )
 
 TARGET_LINK_LIBRARIES(wthru-proxy
-	network
-	server
+	${COGSERVER_LIBRARIES}
 	${ATOMSPACE_LIBRARY}
 	${COGUTIL_LIBRARY}
 )

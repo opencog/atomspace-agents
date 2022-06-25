@@ -38,7 +38,7 @@ class WriteThruProxy : public Module
 
 		static const char *id(void);
 		virtual void init(void);
-		virtual bool config(const std::string&);
+		virtual bool config(const char*);
 };
 
 /** @}*/

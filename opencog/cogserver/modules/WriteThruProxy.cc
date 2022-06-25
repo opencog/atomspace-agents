@@ -20,6 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include <cstdio>
 #include "WriteThruProxy.h"
 
 using namespace opencog;
@@ -39,9 +40,9 @@ WriteThruProxy::~WriteThruProxy()
 {
 }
 
-bool void WriteThruProxy::config(const std::string& cfg)
+bool WriteThruProxy::config(const char* cfg)
 {
-printf("duuuude proxy cfg %s\n", cfg.c_str());
+printf("duuuude proxy cfg %s\n", cfg);
 	return false;
 }
 
