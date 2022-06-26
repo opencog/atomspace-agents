@@ -1,3 +1,3 @@
 
-ADD_SUBDIRECTORY (cogserver)
+# ADD_SUBDIRECTORY (cogserver)
 

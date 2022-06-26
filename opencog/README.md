@@ -1,3 +1,4 @@
-This follows exactly the same directory structure as the cogserver,
-because the new agents will be cogserver shells. That seems like the
-more obvious thing to do, for now.
+
+The code here has moved to
+https://github.com/opencog/cogserver/tree/master/opencog/cogserver/proxy
+which is a better, more convenient location for it.

@@ -1,10 +1,10 @@
 
-AtomSpace Agents
-----------------
-AtomSpace Agents implement different policies for moving Atoms between
-disk and RAM, and between different servers on the network. They are
-the vital decision-makers that are used to stitch together modular
-disk/RAM/network building blocks to build distributed and/or
+AtomSpace Proxy Agents
+----------------------
+AtomSpace Proxy Agents implement different policies for moving Atoms
+between disk and RAM, and between different servers on the network.
+They are the vital decision-makers that are used to stitch together
+modular disk/RAM/network building blocks to build distributed and/or
 decentralized AtomSpaces.
 
 ### Example
