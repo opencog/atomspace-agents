@@ -7,6 +7,13 @@ They are the vital decision-makers that are used to stitch together
 modular disk/RAM/network building blocks to build distributed and/or
 decentralized AtomSpaces.
 
+### XXX Attention
+The text below describes an idea that is already implemented;
+its in the CogServer repo. However, it is clear that this core idea
+can be leveraged to build a much more powerful and sophisticated
+processing mesh, and that mesh needs to be described. This README does
+not describe it (yet). So TODO. Do this.
+
 ### Example
 Consider the following usage scenario. It is taken from the
 [LinkGrammar AtomSpace dictionary backend](https://github.com/opencog/link-grammar/tree/master/link-grammar/dict-atomese).
@@ -66,9 +73,13 @@ There are two ways to implement this idea:
   the policy agent knows what to do, and it knows how to resolve conflicts
   that individual apps might not even be aware of.
 
-This repo implements such policy agents. The above is the simplest
-non-trivial agent: the write-through agent (called a "remembering agent"
-in the text below.)
+The above desribes the simplest non-trivial agent: the write-through
+proxy agent. It is currently implemented in the
+[CogServer git repo, proxy subdir](https://github.com/opencog/cogserver/tree/master/opencog/cogserver/proxy).
+It works, more or less.
+
+The remainder, below, consists of more general ruminations about how
+things can and should work.
 
 ### Terminology and building blocks
 * The [AtomSpace](https://github.com/opencog/atomspace) is an in-RAM
@@ -194,14 +205,16 @@ This Repo
 This repo is meant to be a dumping ground for experimental agents that
 implement different kinds of policies, as sketched above.
 
+XXX Above text needs to be re-written for the point of view of a
+distribued processing netowrk. The basic proxy-agent design has been
+implemented, and it works. The next layer of sophistication remains
+undescribed.
+
 Design
 ------
-The current idea is that the easiest way to do this is to write new
-cogserver shells that behave much like the `sexpr` shell, except that
-they handle the `sexpr` commands slightly differently.  See the
-directory `opencog/cogserver/shell` for details. The directory
-structure is identical to the cogserver directory structure; because
-... ummm ... TBD.
+The code that used to be here has moved to the
+[CogServer git repo](https://github.com/opencog/cogserver/tree/master/opencog/cogserver/proxy).
+Look there for more.
 
 Building
 --------
@@ -217,3 +230,9 @@ sudo make install.
 Status
 ------
 ***Version 0.0.1*** A rough sketch of how things might work.
+See, however the
+[CogServer git repo](https://github.com/opencog/cogserver/tree/master/opencog/cogserver/proxy),
+which contains a working Write-Thru agent (and, by the time you read
+this, maybe there will be others. They're pretty easy to create.).
+
+------
