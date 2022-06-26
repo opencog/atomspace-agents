@@ -1,5 +1,5 @@
 #
-# Master Opencog AtomSpace Agents CMake file.
+# Master Opencog CogServer Agents CMake file.
 #
 # General organization:
 # -- check for different compilers, OS'es
@@ -19,7 +19,7 @@ IF(CMAKE_VERSION VERSION_GREATER 3.0.2)
 	CMAKE_POLICY(SET CMP0037 OLD)
 ENDIF(CMAKE_VERSION VERSION_GREATER 3.0.2)
 
-PROJECT(cogserver)
+PROJECT(agents)
 
 # ----------------------------------------------------------
 # User-modifiable options. Feel free to change these!
@@ -162,6 +162,7 @@ IF(HAVE_ATOMSPACE AND HAVE_COGUTIL)
 ENDIF(HAVE_ATOMSPACE AND HAVE_COGUTIL)
 
 IF(HAVE_SERVER)
+	ADD_SUBDIRECTORY(lib)
 	ADD_SUBDIRECTORY(opencog)
 ENDIF(HAVE_SERVER)
 
