@@ -1,3 +1,17 @@
+Obsolete
+--------
+A version of proxy agents has been implemented, and can be found
+as a part of the [AtomSpace](https://github.com/opencog/atomspace),
+in the [opencog/persist/proxy diectory.](https://github.com/opencog/atomspace/tree/master/opencog/persist/proxy)
+A working example can be found in 
+[examples/atomspace/persist-proxy.scm](https://github.com/opencog/atomspace/tree/master/examples/atomspace)
+What was actually implemented resembles the ideas described below.
+
+There is no code in this repo, there never was any code; it was all
+a sketch for a general design. Since it is now possible to write basic
+agents in pure Atomese, and fancier Agents by following the Proxy
+examples, there does not appear to be any reason to maintain the repo
+any longer. Thus its marked obsolete.
 
 AtomSpace Proxy Agents
 ----------------------
